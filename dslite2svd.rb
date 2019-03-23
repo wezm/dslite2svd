@@ -22,11 +22,16 @@ def sanitize_ident(id)
 end
 
 def common_id_prefix(nodes, basename)
+  puts "common_id_prefix(#{nodes}, #{basename})"
+  return /^/
   if nodes.one?
     /^#{Regexp.escape basename}_/
   else
     prefix = nodes.first.get('id').dup
+    return /^/ unless prefix.include?('_')
+    p nodes.map { |n| n.get('id') }
     nodes.each do |node|
+      puts "#{node.get('id')} prefix = #{prefix}"
       until node.get('id').start_with?(prefix) && node.get('id') != prefix
         prefix.sub!(/_[^_]+_?$/, '_')
       end
@@ -87,6 +92,7 @@ svd.device(schemaVersion: '1.1',
       if %w(cs_dap_0 cortex_m3_0 cortex_m4_0 fpu nvic).include?(instance.get('id').downcase)
         next
       end
+      puts instance.get('id')
 
       mod_path = File.join(File.dirname(registers_file), instance.get('href'))
       mod_doc = Oga.parse_xml(File.read(mod_path))
@@ -119,13 +125,16 @@ svd.device(schemaVersion: '1.1',
           x.protection(instance.get('permissions'))
         end
 
+        puts "next" if seen_instance
         next if seen_instance
 
         registers = mod.xpath('register')
         register_id_prefix = common_id_prefix(registers, instance.get('id'))
         seen_registers = []
         x.registers do |x|
+          puts "registers"
           registers.each do |register|
+            puts "registers each"
             if seen_registers.include?(register.get('id'))
               # This happens in a few places; the intended behavior is probably merging
               # the register definitions, but since all of those lack bitfields anyway,
@@ -134,6 +143,7 @@ svd.device(schemaVersion: '1.1',
               next
             else
               seen_registers.push(register.get('id'))
+              puts "Register #{register.get('id')}"
             end
 
             x.register do |x|
@@ -184,7 +194,7 @@ svd.device(schemaVersion: '1.1',
                       raise "Unexpected non-empty range in #{bitfield}"
                     end
                     if !bitfield.get('resetval').empty?
-                      raise "Unexpected non-empty resetval in #{bitfield}"
+                      warn "Unexpected non-empty resetval in #{bitfield.to_xml}"
                     end
 
                     bitenums = bitfield.xpath('bitenum')
@@ -203,7 +213,7 @@ svd.device(schemaVersion: '1.1',
                           x.description(bitenum.get('description'))
 
                           value = Integer(bitenum.get('value'))
-                          value >>= Integer(bitfield.get('end'))
+                          # value >>= Integer(bitfield.get('end'))
                           x.value("0x#{value.to_s(16)}")
 
                           if !bitenum.get('token')

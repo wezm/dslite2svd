@@ -7,6 +7,12 @@ a not-invented-here variant of SVD. This repository contains a converter, _dslit
 
 [Energia]: http://energia.nu/
 
+Notes on This Fork
+------------------
+
+This fork contains changes from the original to allow it to generate SVD/crates
+for the TI CC2650 microcontroller.
+
 Usage
 -----
 

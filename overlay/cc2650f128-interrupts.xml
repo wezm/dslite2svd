@@ -1,0 +1,34 @@
+<interrupts>
+  <interrupt id="GPIO" value="16" description="GPIO edge detect"/>
+  <interrupt id="I2C" value="17" description="I2C"/>
+  <interrupt id="RFC_PE0" value="18" description="RF Core and packet engine 1"/>
+  <interrupt id="AON_RTC" value="20" description="AON RTC"/>
+  <interrupt id="UART0" value="21" description="UART0"/>
+  <interrupt id="UART1" value="22" description="UART1"/>
+  <interrupt id="SSI0" value="23" description="SSI0"/>
+  <interrupt id="SSI1" value="24" description="SSI1"/>
+  <interrupt id="RFC_PE1" value="25" description="RF Core and packet engine 2"/>
+  <interrupt id="RFC" value="26" description="RF Core hardware"/>
+  <interrupt id="RFC_CA" value="27" description="RF command acknowledge"/>
+  <interrupt id="I2S" value="28" description="I2S"/>
+  <interrupt id="WDT" value="30" description="Watchdog timer"/>
+  <interrupt id="GPT0A" value="31" description="GPTimer 0A"/>
+  <interrupt id="GPT0B" value="32" description="GPTimer 0B"/>
+  <interrupt id="GPT1A" value="33" description="GPTimer 1A"/>
+  <interrupt id="GPT1B" value="34" description="GPTimer 1B"/>
+  <interrupt id="GPT2A" value="35" description="GPTimer 2A"/>
+  <interrupt id="GPT2B" value="36" description="GPTimer 2B"/>
+  <interrupt id="GPT3A" value="37" description="GPTimer 3A"/>
+  <interrupt id="GPT3B" value="38" description="GPTimer 3B"/>
+  <interrupt id="CRYPTO" value="39" description="Crypto"/>
+  <interrupt id="UDMA" value="40" description="μDMA software defined"/>
+  <interrupt id="UDMA_ERR" value="41" description="μDMA error"/>
+  <interrupt id="FLASH" value="42" description="Flash"/>
+  <interrupt id="SWE0" value="43" description="Software event 0"/>
+  <interrupt id="AUX_CE" value="44" description="AUX combined event"/>
+  <interrupt id="AON_EVENT" value="45" description="AON programmable event"/>
+  <interrupt id="DYN_EVENT" value="46" description="Dynamic programmable event"/>
+  <interrupt id="AUX_COMPA" value="47" description="AUX comparator A"/>
+  <interrupt id="AUX_MISC" value="48" description="AUX ADC new sample available or ADC DMA done, ADC underflow and overflow"/>
+  <interrupt id="TRNG" value="49" description="True random number generator"/>
+</interrupts>

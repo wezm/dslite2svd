@@ -1,5 +1,5 @@
-DEVICES  := tm4c123x tm4c129x
-SVD2RUST ?= svd2rust
+DEVICES  := cc2650f128
+SVD2RUST ?= /home/wmoore/Source/svd2rust/target/debug/svd2rust
 FORM ?= form
 CARGO_FMT ?= cargo fmt
 
